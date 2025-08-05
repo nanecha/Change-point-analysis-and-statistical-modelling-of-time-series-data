@@ -1,73 +1,123 @@
-# 🛢️ Task 1: Laying the Foundation for Analysis  
-**SHAP-Based Analysis of Brent Oil Prices**
+# Brent Oil Price Analysis: Task 1 - Laying the Foundation
 
-This task outlines the foundational workflow for analyzing the impact of **geopolitical events**, **OPEC policy changes**, **economic sanctions**, and **conflicts** on Brent crude oil prices. The goal is to identify price drivers, model their effects, and generate actionable insights for stakeholders such as investors, policymakers, and energy companies.
-
----
-
-## 📌 1. Data Analysis Workflow
-
-### 🔍 1.1 Methodology Overview  
-A structured data science approach is followed to ensure accurate, interpretable, and impactful results.
-
-### ✅ Steps:
-
-1. **Problem Definition**
-   - Understand how global events impact Brent oil prices.
-   - Extract insights for prediction and decision-making.
-
-2. **Data Collection**
-   - **Brent Price Data**: Historical daily/monthly prices (e.g., EIA, ICE).
-   - **Event Data**: Geopolitical events, OPEC decisions, sanctions, and conflicts (e.g., from World Bank, IEA, news archives).
-   - **External Variables**: Macroeconomic indicators (e.g., global GDP, oil inventories, USD index).
-
-3. **Data Preprocessing**
-   - Handle missing values, outliers, and inconsistencies.
-   - Engineer event-based features (e.g., binary flags, lags).
-   - Merge datasets with correct time alignment and granularity.
-
-4. **Exploratory Data Analysis (EDA)**
-   - Visualize trends, volatility, and statistical summaries.
-   - Overlay events with price spikes.
-   - Check for seasonality, trends, and structural breaks.
-
-5. **Modeling**
-   - **Time Series Models**: ARIMA, SARIMA.
-   - **Change Point Detection**: Bayesian, PELT, CUSUM.
-   - **Regression & VAR**: Quantify event impacts controlling for external factors.
-   - **Machine Learning (Optional)**: Use Random Forests, Gradient Boosting for complex patterns.
-
-6. **Model Evaluation**
-   - Use MAE, RMSE, or BIC to assess performance.
-
-7. **Insights & Interpretation**
-   - Identify and quantify impact of events on oil prices.
-   - Detect structural breaks and link to key events.
-   - Provide tailored recommendations for different stakeholders.
-
-8. **Results Communication**
-   - Prepare visual reports and interactive dashboards.
-   - Present results to investors (risk/return), policymakers (security), and energy companies (logistics).
+This project sets the groundwork for analyzing how geopolitical events, economic indicators, and policy decisions impact **Brent Crude Oil Prices**. The focus of **Task 1** is to perform an initial exploration, data cleaning, and visualization of the Brent oil price time series data.
 
 ---
 
-## 📑 1.2 Event Dataset Compilation
+## 📁 Folder Structure
 
-A curated dataset of significant global events that potentially influenced Brent oil prices will be compiled. Events include:
-- Conflicts (e.g., Russia-Ukraine war)
-- OPEC+ decisions on supply cuts
-- Major economic sanctions (e.g., on Iran or Venezuela)
-- Global demand shifts (e.g., during COVID-19)
-
-The dataset includes:
-- **Event name**
-- **Date**
-- **Category** (Geopolitical, OPEC, Sanctions, Conflict)
-- **Estimated impact direction**
+```
+Change-point-analysis-and-statistical-modelling-of-time-series-data/
+├── data/
+│   └── BrentOilPrices.csv
+├──github
+│   └──workflows
+│      └──ci.yml
+├── notebooks/
+│   └── data_preprocessing.ipynb
+├── src/
+│   └── data_eda.py  # Modular analysis functions
+│   └──__init__.py
+├── README.md
+├── requirements.txt
+├──.gitignore
+```
 
 ---
 
-## 📚 References
+## ⚙️ Setup Instructions
 
-- [Data Science Workflow](https://www.datascience-pm.com/data-science-workflow/)
-- [Mastering the Data Science Workflow – TDS](https://towardsdatascience.com/mastering-the-data-science-workflow-2a47d8b613c4)
+1. **Clone the repository**
+
+```bash
+git clone 
+cd brent-oil-analysis
+```
+
+2. **Create virtual environment & activate**
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+```
+
+3. **Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📦 Dependencies (in `requirements.txt`)
+
+```
+pandas
+matplotlib
+seaborn
+```
+
+---
+
+## 🚀 Use Case & Task Overview
+
+This task includes the following steps:
+
+### ✅ Data Loading & Initial Inspection
+
+```python
+from src.data_eda import load_data, preview_data, show_info, show_shape
+
+df = load_data('data/BrentOilPrices.csv')
+preview_data(df)
+show_info(df)
+show_shape(df)
+```
+
+### ✅ Statistical Summary
+
+```python
+from src.data_analysis import summarize_data
+print(summarize_data(df))
+```
+
+### ✅ Data Quality Checks
+
+```python
+from src.data_eda import check_missing_values, check_duplicates
+print(check_missing_values(df))
+print(check_duplicates(df))
+```
+
+### ✅ Data Visualization
+
+```python
+from src.data_analysis import plot_brent_prices
+plot_brent_prices(df)
+```
+
+---
+
+## 🔍 Purpose of This Task
+
+* Establish a **clean and understandable dataset**
+* Visualize price **trends and volatility**
+* Prepare for deeper statistical modeling and event-based impact analysis in the next tasks
+
+---
+
+## 🧠 Next Steps
+
+* Time series modeling (ARIMA, Change Point Detection)
+* Feature engineering for geopolitical events
+* Causal analysis between events and price changes
+
+---
+
+## 📄 References
+
+* [Data Science Workflow](https://www.datascience-pm.com/data-science-workflow/)
+* [Mastering the Data Science Workflow](https://towardsdatascience.com/mastering-the-data-science-workflow-2a47d8b613c4)
