@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -196,4 +197,4 @@ def interpret_model(trace, price_data, event_data):
     return change_point_date, insights, mu_1_mean, mu_2_mean, price_change, associated_events
 
 if __name__ == '__main__':
-    pass      
+     pass 
